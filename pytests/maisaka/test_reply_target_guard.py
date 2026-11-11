@@ -73,7 +73,9 @@ def test_find_latest_user_message_ignores_bot_replies() -> None:
 def test_find_latest_user_message_skips_notifications() -> None:
     history = _build_history()
     notification = _build_message(
-        "1004", "平台通知：戳一戳", timestamp=datetime(2026, 11, 9, 18, 27, 40),
+        "1004",
+        "平台通知：戳一戳",
+        timestamp=datetime(2026, 11, 9, 18, 27, 40),
     )
     notification.original_message.is_notify = True
     history.append(notification)
@@ -121,7 +123,11 @@ def test_find_stale_reply_target_keeps_supplement_after_newer_message() -> None:
 
 def test_build_stale_reply_target_failure_suggests_latest_message() -> None:
     result = _build_stale_reply_target_failure(
-        _StubToolContext(), _build_history(), "1001", "已回复第一条", {},
+        _StubToolContext(),
+        _build_history(),
+        "1001",
+        "已回复第一条",
+        {},
     )
     assert result is not None
     assert result.structured_content["error_code"] == "stale_reply_target"
